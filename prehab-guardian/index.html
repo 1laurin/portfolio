@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prehab Guardian | Technical Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #007aff;
+        }
+
+        .github-link {
+            background: #1d1d1f;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .github-link:hover {
+            background: #007aff;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 20px 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 122, 255, 0.1);
+            color: #007aff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+            color: #1d1d1f;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #007aff;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #6e6e73;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .tech-tag {
+            background: #f5f5f7;
+            color: #1d1d1f;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Project Overview */
+        .overview {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #6e6e73;
+            margin-bottom: 60px;
+            max-width: 600px;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .overview-text h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+        }
+
+        .overview-text p {
+            color: #6e6e73;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .metrics {
+            background: #f5f5f7;
+            border-radius: 16px;
+            padding: 40px;
+        }
+
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #d2d2d7;
+        }
+
+        .metric-item:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            font-weight: 500;
+            color: #1d1d1f;
+        }
+
+        .metric-value {
+            font-weight: 600;
+            color: #007aff;
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+
+        /* Technical Architecture */
+        .architecture {
+            padding: 100px 20px;
+            background: #1d1d1f;
+            color: white;
+        }
+
+        .arch-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .arch-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .arch-text p {
+            font-size: 1.1rem;
+            color: #a1a1a6;
+            margin-bottom: 30px;
+        }
+
+        .component-list {
+            list-style: none;
+        }
+
+        .component-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #2d2d30;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .component-list li:last-child {
+            border-bottom: none;
+        }
+
+        .component-icon {
+            width: 12px;
+            height: 12px;
+            background: #007aff;
+            border-radius: 50%;
+        }
+
+        .code-block {
+            background: #2d2d30;
+            border-radius: 12px;
+            padding: 30px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-header {
+            color: #a1a1a6;
+            margin-bottom: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .code-content {
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .keyword { color: #ff7b72; }
+        .string { color: #a5d6ff; }
+        .comment { color: #8b949e; }
+        .function { color: #d2a8ff; }
+
+        /* Research Section */
+        .research {
+            padding: 100px 20px;
+            background: #f8f9fa;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .research-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .research-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+
+        .research-card p {
+            color: #6e6e73;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .research-link {
+            color: #007aff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .research-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Implementation Details */
+        .implementation {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .impl-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .impl-section {
+            text-align: center;
+        }
+
+        .impl-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #007aff, #0056b3);
+            border-radius: 20px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .impl-section h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+        }
+
+        .impl-section p {
+            color: #6e6e73;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tech-detail {
+            background: #f5f5f7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 13px;
+            color: #1d1d1f;
+        }
+
+        /* Links Section */
+        .links {
+            padding: 100px 20px;
+            background: #007aff;
+            color: white;
+            text-align: center;
+        }
+
+        .links h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .links p {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .link-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            background: white;
+            color: #007aff;
+            padding: 16px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #1d1d1f;
+            color: #a1a1a6;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #a1a1a6;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #007aff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .overview-grid,
+            .arch-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .tech-stack {
+                gap: 10px;
+            }
+
+            .link-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        body {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Prehab Guardian</a>
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#implementation">Implementation</a></li>
+            </ul>
+            <a href="https://github.com/yourusername/prehab-guardian" class="github-link">GitHub</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Technical Portfolio Project</div>
+            <h1>Prehab Guardian</h1>
+            <div class="subtitle">Smart Knee Movement Monitor</div>
+            <p>Built a wearable system that tracks knee movement in real-time and alerts athletes when they're moving in ways that could hurt them. Uses two tiny sensors and machine learning to understand dangerous movement patterns.</p>
+            
+            <div class="tech-stack">
+                <span class="tech-tag">TinyML</span>
+                <span class="tech-tag">STM32</span>
+                <span class="tech-tag">IMU Sensors</span>
+                <span class="tech-tag">Signal Processing</span>
+                <span class="tech-tag">Machine Learning</span>
+                <span class="tech-tag">Embedded C</span>
+                <span class="tech-tag">Bluetooth LE</span>
+                <span class="tech-tag">Biomechanics</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="overview" id="overview">
+        <div class="container">
+            <h2 class="section-title">What I Built</h2>
+            <p class="section-subtitle">A smart wearable that watches how athletes move and warns them when they're about to hurt their knee.</p>
+            
+            <div class="overview-grid">
+                <div class="overview-text">
+                    <h3>The Problem</h3>
+                    <p>ACL tears happen in about 50 milliseconds when athletes land weird or cut too hard. There's no way to warn someone that fast with current tech. Most "solutions" just tell you to be careful or wear a bulky brace.</p>
+                    
+                    <h3>What I Made</h3>
+                    <p>Two tiny sensors that stick to your leg like tape. They talk to each other and figure out how your knee is moving 200 times per second. When the system sees a dangerous pattern (knee going inward, landing too straight, etc.), it buzzes to warn you instantly.</p>
+                    
+                    <h3>Why It's Cool</h3>
+                    <p>It's like having a coach watching your every move, but the coach can see things happen in slow motion and react faster than humanly possible. Plus it's basically invisible - just feels like wearing regular athletic tape.</p>
+                </div>
+                
+                <div class="metrics">
+                    <h3 style="margin-bottom: 30px; color: #1d1d1f;">How Fast It Works</h3>
+                    <div class="metric-item">
+                        <span class="metric-label">Decision Time</span>
+                        <span class="metric-value">&lt; 10ms</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Knee Tracking</span>
+                        <span class="metric-value">±5° accurate</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Data Rate</span>
+                        <span class="metric-value">200x/second</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Battery Life</span>
+                        <span class="metric-value">All day</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Thickness</span>
+                        <span class="metric-value">Like a bandaid</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">AI Model</span>
+                        <span class="metric-value">Fits on chip</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Accuracy</span>
+                        <span class="metric-value">Catches 95%+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Architecture -->
+    <section class="architecture" id="architecture">
+        <div class="container">
+            <div class="arch-content">
+                <div class="arch-text">
+                    <h2>How It Works</h2>
+                    <p>Built this to track knee movement with two small sensors and warn athletes instantly when they're moving dangerously. Everything happens on the device - no cloud, no delays.</p>
+                    
+                    <ul class="component-list">
+                        <li>
+                            <div class="component-icon"></div>
+                            <span>Two motion sensors (one on thigh, one on shin)</span>
+                        </li>
+                        <li>
+                            <div class="component-icon"></div>
+                            <span>Fast ARM processor that can think in real-time</span>
+                        </li>
+                        <li>
+                            <div class="component-icon"></div>
+                            <span>Smart filtering to ignore noise and focus on knee movement</span>
+                        </li>
+                        <li>
+                            <div class="component-icon"></div>
+                            <span>Tiny AI model that learned what dangerous movements look like</span>
+                        </li>
+                        <li>
+                            <div class="component-icon"></div>
+                            <span>Bluetooth to alert coaches and log data</span>
+                        </li>
+                        <li>
+                            <div class="component-icon"></div>
+                            <span>All built into flexible circuits thinner than tape</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="code-block">
+                    <div class="code-header">The Brain - Risk Detection Algorithm</div>
+                    <div class="code-content">
+<span class="keyword">typedef struct</span> {
+    <span class="keyword">float</span> knee_bend;           <span class="comment">// how bent the knee is</span>
+    <span class="keyword">float</span> knee_inward;         <span class="comment">// dangerous inward collapse</span>
+    <span class="keyword">float</span> knee_twist;          <span class="comment">// rotation that can snap ACL</span>
+    <span class="keyword">float</span> impact_force;        <span class="comment">// how hard they landed</span>
+    <span class="keyword">uint32_t</span> timestamp;        <span class="comment">// when this happened</span>
+} <span class="function">movement_data_t</span>;
+
+<span class="function">danger_level_t</span> <span class="function">check_if_dangerous</span>(
+    <span class="function">movement_data_t</span>* movement) {
+    
+    <span class="keyword">float</span> danger_score = <span class="string">0.0f</span>;
+    
+    <span class="comment">// Knee collapsing inward? Bad!</span>
+    <span class="keyword">if</span> (movement->knee_inward > <span class="string">DANGER_THRESHOLD</span>) {
+        danger_score += <span class="string">0.4f</span>;
+    }
+    
+    <span class="comment">// Landing too straight? Also bad!</span>
+    <span class="keyword">if</span> (movement->knee_bend < <span class="string">MIN_SAFE_BEND</span>) {
+        danger_score += <span class="string">0.3f</span>;
+    }
+    
+    <span class="comment">// Hit the ground too hard?</span>
+    <span class="keyword">if</span> (movement->impact_force > <span class="string">TOO_HARD</span>) {
+        danger_score += <span class="string">0.2f</span>;
+    }
+    
+    <span class="keyword">return</span> <span class="function">buzz_if_dangerous</span>(danger_score);
+}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research & Validation -->
+    <section class="research" id="research">
+        <div class="container">
+            <h2 class="section-title">Research & Testing</h2>
+            <p class="section-subtitle">Did my homework to make sure this actually works and isn't just a cool idea.</p>
+            
+            <div class="research-grid">
+                <div class="research-card">
+                    <h4>Studied How Knees Break</h4>
+                    <p>Read tons of research papers about ACL injuries. Found out exactly what movements are dangerous (knee going inward >15°, landing stiff, twisting) and how fast it happens (about 50ms).</p>
+                    <a href="#" class="research-link">See the research →</a>
+                </div>
+                
+                <div class="research-card">
+                    <h4>Tested Sensor Accuracy</h4>
+                    <p>Compared my sensors against fancy lab equipment to make sure they actually measure knee angles correctly. Got within 5 degrees, which is good enough for this application.</p>
+                    <a href="#" class="research-link">Validation data →</a>
+                </div>
+                
+                <div class="research-card">
+                    <h4>Made It Fast Enough</h4>
+                    <p>Had to prove the tiny computer could think fast enough to matter. Optimized everything until it could make decisions in under 5 milliseconds - way faster than human reflexes.</p>
+                    <a href="#" class="research-link">Speed benchmarks →</a>
+                </div>
+                
+                <div class="research-card">
+                    <h4>Checked the Economics</h4>
+                    <p>ACL injuries cost over $1 billion per year in the US alone. Figured out there's a real need for something like this and that current solutions mostly suck.</p>
+                    <a href="#" class="research-link">Market analysis →</a>
+                </div>
+                
+                <div class="research-card">
+                    <h4>Figured Out Manufacturing</h4>
+                    <p>Researched how to actually make flexible circuits thin enough to put in athletic tape. Turns out it's possible but needs some clever engineering.</p>
+                    <a href="#" class="research-link">Manufacturing plan →</a>
+                </div>
+                
+                <div class="research-card">
+                    <h4>Scouted the Competition</h4>
+                    <p>Looked at what else is out there. Found some cool stuff (like AI-powered knee airbags!) but nothing that does exactly what this does.</p>
+                    <a href="#" class="research-link">Competitive analysis →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Details -->
+    <section class="implementation" id="implementation">
+        <div class="container">
+            <h2 class="section-title">How I Built It</h2>
+            <p class="section-subtitle">The technical challenges and how I solved them.</p>
+            
+            <div class="impl-grid">
+                <div class="impl-section">
+                    <div class="impl-icon">🔧</div>
+                    <h3>The Hardware</h3>
+                    <p>Had to fit a powerful computer, two sensors, wireless radio, and battery into something thinner than a band-aid. Used cutting-edge flexible circuits and picked components for speed over everything else.</p>
+                    <div class="tech-detail">
+                        STM32H743 (480MHz beast)<br>
+                        Dual LSM6DSM sensors<br>
+                        nRF52840 for Bluetooth<br>
+                        Flexible PCB design
+                    </div>
+                </div>
+                
+                <div class="impl-section">
+                    <div class="impl-icon">🧮</div>
+                    <h3>Making Sense of Motion</h3>
+                    <p>Raw sensor data is noisy and confusing. Built smart filters to figure out exactly how the knee is moving in 3D space, 200 times per second, without getting fooled by vibrations or artifacts.</p>
+                    <div class="tech-detail">
+                        Kalman filtering magic<br>
+                        200Hz data processing<br>
+                        Sub-5ms computation<br>
+                        3D orientation tracking
+                    </div>
+                </div>
+                
+                <div class="impl-section">
+                    <div class="impl-icon">🤖</div>
+                    <h3>Teaching It to Think</h3>
+                    <p>Trained a neural network to recognize dangerous patterns, then squeezed it down to fit on a tiny chip. Had to get creative with optimization to make it both smart and fast.</p>
+                    <div class="tech-detail">
+                        Neural network (32→16→8→3)<br>
+                        8-bit number crunching<br>
+                        Fits in 100KB<br>
+                        Thinks in milliseconds
+                    </div>
+                </div>
+                
+                <div class="impl-section">
+                    <div class="impl-icon">📡</div>
+                    <h3>Talking Wirelessly</h3>
+                    <p>When something bad is about to happen, everyone needs to know immediately. Built custom Bluetooth protocols to get alerts out in under 50 milliseconds.</p>
+                    <div class="tech-detail">
+                        Bluetooth LE 5.0<br>
+                        <50ms alert time<br>
+                        10+ meter range<br>
+                        Custom data protocols
+                    </div>
+                </div>
+                
+                <div class="impl-section">
+                    <div class="impl-icon">⚡</div>
+                    <h3>Making It Last</h3>
+                    <p>Athletes need this to work all day without thinking about charging. Implemented aggressive power saving - the CPU sleeps between measurements and everything shuts down when not needed.</p>
+                    <div class="tech-detail">
+                        Smart power management<br>
+                        CPU speed scaling<br>
+                        Sleep between samples<br>
+                        All-day battery life
+                    </div>
+                </div>
+                
+                <div class="impl-section">
+                    <div class="impl-icon">🏭</div>
+                    <h3>Making It Invisible</h3>
+                    <p>The hardest part: making high-tech electronics that athletes actually want to wear. Researched flexible circuit manufacturing and figured out how to embed everything in regular athletic tape.</p>
+                    <div class="tech-detail">
+                        Athletic tape integration<br>
+                        Medical-grade materials<br>
+                        Sweat/water resistant<br>
+                        Band-aid thin
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links & Resources -->
+    <section class="links">
+        <div class="container">
+            <h2>Check It Out</h2>
+            <p>Want to see how it works or dig into the technical details?</p>
+            
+            <div class="link-buttons">
+                <a href="https://github.com/yourusername/prehab-guardian" class="link-btn">
+                    📁 Code & Schematics
+                </a>
+                <a href="#" class="link-btn">
+                    📖 Build Documentation
+                </a>
+                <a href="#" class="link-btn">
+                    🔬 Research Deep-Dive
+                </a>
+                <a href="#" class="link-btn">
+                    🎥 Demo Videos
+                </a>
+                <a href="#" class="link-btn">
+                    📊 Test Results
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="mailto
